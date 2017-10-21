@@ -12,11 +12,11 @@ public class MainController {
 	
 	private MenuController menuController;
 	
-	private boolean isMenu;
+	public static boolean isMenu;
 	
 	public MainController(){
 		isMenu=true;
-		controller=new PuzzlesController();
+		//controller=new PuzzlesController();
 		menuController=new MenuController();
 		
 	}
@@ -24,26 +24,48 @@ public class MainController {
 	
 	
 	public void update(){
-		controller.update();
+		if(isMenu){
+		   String name=	menuController.update();
+		   if(name!=null){
+			   controller=new PuzzlesController(name);
+			   isMenu=false;
+		   }
+		}else{
+			controller.update();
+		}
 	}
+	
 	public void render(Graphics2D graphic){
-		controller.render(graphic);
+		
+		if(isMenu){
+			menuController.render(graphic);
+		}else{
+			controller.render(graphic);
+		}
 	}
 	
 	public void draw(){
+		if(!isMenu){
 		controller.draw();
+		}
 	}
 	
+	public List<MouseListener> getMouseListenersMenu(){
+		return menuController.getMouseListenersMenu();
+	}
 	
 	public List<KeyListener> getKeyListeners(){
+		
 		return controller.getKeyListeners();
 	}
 	
 	public List<MouseListener> getMouseListeners(){
+		
 		return controller.getMouseListeners();
 	}
 	
 	public List<MouseMotionListener> getMouseMotionListeners(){
+		
 		return controller.getMouseMotionListeners();
 	}
 }

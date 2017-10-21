@@ -87,19 +87,27 @@ public class Panel extends JPanel implements Runnable{
 		
 		
 		mainController=new MainController();
-		for (KeyListener keyListener : mainController.getKeyListeners()) {
-			addKeyListener(keyListener);
-		}
-		for (MouseListener mouseListener : mainController.getMouseListeners()) {
+	
+		
+		for (MouseListener mouseListener : mainController.getMouseListenersMenu()) {
 			addMouseListener(mouseListener);
-		}
-		for (MouseMotionListener mouseMotionListener : mainController.getMouseMotionListeners()) {
-			addMouseMotionListener(mouseMotionListener);
 		}
 		//addKeyListener(controller.getListener());
 		//addKeyListener(controller.getControllerListener());
 		
 		while(true){
+			if(!MainController.isMenu){
+				for (KeyListener keyListener : mainController.getKeyListeners()) {
+					addKeyListener(keyListener);
+				}
+				for (MouseListener mouseListener : mainController.getMouseListeners()) {
+					addMouseListener(mouseListener);
+				}
+				for (MouseMotionListener mouseMotionListener : mainController.getMouseMotionListeners()) {
+					addMouseMotionListener(mouseMotionListener);
+				}
+			}
+			
 			
 			timerFPS=System.nanoTime();
 					

@@ -31,14 +31,13 @@ public class PuzzlesController {
 	
 	//private boolean isOver;
 	
-	private GameOver over;
 	
-public	PuzzlesController(){
-		over=new GameOver();
+	
+public	PuzzlesController(String imageName){
 		drawImg=new DrawImg();
 		
 		try {
-			gameImg=ImageIO.read(new File("src/img/car.jpg"));
+			gameImg=ImageIO.read(new File(imageName));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -61,7 +60,7 @@ public	PuzzlesController(){
 			}
 			move.draw(graphic);
 		}else{
-			over.draw(graphic);
+			MainController.isMenu=true;
 		}
 	}
 	
@@ -81,11 +80,8 @@ public	PuzzlesController(){
 		for (Cube cube : cubes) {
 			if(cube.getCurrent_X()==cube.getCorrect_X() &&cube.getCurrent_Y()==cube.getCorrect_Y()){
 				i=i+1;
-			//	System.out.println("corect x/y"+cube.getCorrect_X()+"/"+cube.getCorrect_Y()+"||| current x/y"+cube.getCurrent_X()+"/"+cube.getCurrent_Y());
-			//	isCor=false;
 			}
 		}
-		//System.out.println(i);
 		if(i==16){
 			isCor=false;
 		}else{
@@ -138,13 +134,6 @@ public	PuzzlesController(){
 	
 				move.clear();
 			}
-		/*	boolean isO=true;
-			for (Cube cube : cubes) {
-				if(cube.getCorrect_X()!=cube.getCurrent_X() && cube.getCorrect_Y()!=cube.getCurrent_Y()){
-					isO=false;
-				}
-			}
-			isOver=isO;*/
 		}
 		
 	private void take(int mouseX, int mouseY) {
@@ -185,6 +174,9 @@ public	PuzzlesController(){
 			int key = e.getKeyCode();
 			if (key == KeyEvent.VK_SPACE) {
 				space=true;
+			}
+			if (key == KeyEvent.VK_ESCAPE) {
+				MainController.isMenu=true;
 			}
 		}
 	
