@@ -21,6 +21,5 @@ public class Main {
 	     frame.setLocationRelativeTo(null);
 	     
 	     panel.start();
-		 
-	}
+	} 
 }

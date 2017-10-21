@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import Controller.MainController;
 import Controller.PuzzlesController;
 import Draw.Background;
 
@@ -26,7 +27,7 @@ public class Panel extends JPanel implements Runnable{
 	
 	private Background background;
 	
-	private PuzzlesController controller;
+	private MainController mainController;
 	
 	private int FPS;
 	private long timerFPS;
@@ -47,14 +48,14 @@ public class Panel extends JPanel implements Runnable{
 	
 	public void update(){
 		background.update();
-		controller.update();
+		mainController.update();
 		
 	}
 	
 	//Update graphic components
 	public void render(){
 		background.draw(graphic);
-		controller.render(graphic);
+		mainController.render(graphic);
 	
 	}
 	
@@ -62,7 +63,7 @@ public class Panel extends JPanel implements Runnable{
 		Graphics graphic2=this.getGraphics();
 		graphic2.drawImage(image, 0, 0, null);
 		graphic2.dispose();
-		controller.draw();
+		//mainController.draw();
 		
 	}
 	
@@ -85,14 +86,14 @@ public class Panel extends JPanel implements Runnable{
 		background= new Background();
 		
 		
-		controller=new PuzzlesController();
-		for (KeyListener keyListener : controller.getKeyListeners()) {
+		mainController=new MainController();
+		for (KeyListener keyListener : mainController.getKeyListeners()) {
 			addKeyListener(keyListener);
 		}
-		for (MouseListener mouseListener : controller.getMouseListeners()) {
+		for (MouseListener mouseListener : mainController.getMouseListeners()) {
 			addMouseListener(mouseListener);
 		}
-		for (MouseMotionListener mouseMotionListener : controller.getMouseMotionListeners()) {
+		for (MouseMotionListener mouseMotionListener : mainController.getMouseMotionListeners()) {
 			addMouseMotionListener(mouseMotionListener);
 		}
 		//addKeyListener(controller.getListener());

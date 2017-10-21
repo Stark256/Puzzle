@@ -27,13 +27,18 @@ public class PuzzlesController {
 	
 	private MoveCube move; 
 	
-	boolean space;
+	private boolean space;
+	
+	//private boolean isOver;
+	
+	private GameOver over;
 	
 public	PuzzlesController(){
+		over=new GameOver();
 		drawImg=new DrawImg();
 		
 		try {
-			gameImg=ImageIO.read(new File("src/img/img4.jpg"));
+			gameImg=ImageIO.read(new File("src/img/car.jpg"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -41,19 +46,23 @@ public	PuzzlesController(){
 		CutCube cutCube=new CutCube(gameImg);
 		cutCube.cut();
 		cubes=cutCube.getCubes();
-		drawImg.mix(cubes);
 		
+		drawImg.mix(cubes);
 		move= new MoveCube(findOneCube(0,0).getImage().getWidth(),findOneCube(0,0).getImage().getHeight());
 		//move.setIsEmpty(true);
 	}
 	
 	public void render(Graphics2D graphic){
-		if(!space){
-			drawImg.drawAll(graphic,cubes);
+		if(isCorect()){
+			if(!space){
+				drawImg.drawAll(graphic,cubes);
+			}else{
+				drawImg.drawCorrect(graphic,cubes);
+			}
+			move.draw(graphic);
 		}else{
-			drawImg.drawCorrect(graphic,cubes);
+			over.draw(graphic);
 		}
-		move.draw(graphic);
 	}
 	
 	public void draw(){
@@ -62,7 +71,29 @@ public	PuzzlesController(){
 	
 	public void update(){
 		move.update();
+		
 	}
+	
+	
+	public boolean isCorect(){
+		boolean isCor=false;
+		int i=0;
+		for (Cube cube : cubes) {
+			if(cube.getCurrent_X()==cube.getCorrect_X() &&cube.getCurrent_Y()==cube.getCorrect_Y()){
+				i=i+1;
+			//	System.out.println("corect x/y"+cube.getCorrect_X()+"/"+cube.getCorrect_Y()+"||| current x/y"+cube.getCurrent_X()+"/"+cube.getCurrent_Y());
+			//	isCor=false;
+			}
+		}
+		//System.out.println(i);
+		if(i==16){
+			isCor=false;
+		}else{
+			isCor=true;
+		}
+		return isCor;
+	}
+	
 	
 	public Cube findOneCube(int x,int y){
 		for (Cube cube : cubes) {
@@ -107,6 +138,13 @@ public	PuzzlesController(){
 	
 				move.clear();
 			}
+		/*	boolean isO=true;
+			for (Cube cube : cubes) {
+				if(cube.getCorrect_X()!=cube.getCurrent_X() && cube.getCorrect_Y()!=cube.getCurrent_Y()){
+					isO=false;
+				}
+			}
+			isOver=isO;*/
 		}
 		
 	private void take(int mouseX, int mouseY) {
