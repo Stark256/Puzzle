@@ -9,6 +9,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import Controller.MainController;
+
 public class DrawSolid {
 
 	private BufferedImage image;
@@ -20,8 +22,6 @@ public class DrawSolid {
 	private int y;
 	
 	private boolean isClick;
-	
-	
 	
 	public DrawSolid(String imageName, int x, int y) {
 		try {
@@ -38,18 +38,12 @@ public class DrawSolid {
 		try {
 			graphic.drawImage(ImageIO.read(new File("src/img/header.jpg")), 0, 0, 460, 115, null);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		graphic.drawImage(image, x, y, 115, 115, null);
 	}
 	
-	public void update(){
-		
-	}
-	
 	public MouseListener getListener(){
-		
 		return new GameMouseListener(); 
 	}
 	
@@ -57,24 +51,19 @@ private class GameMouseListener implements MouseListener {
 		
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if (e.getButton() == MouseEvent.BUTTON1) {
+			if (e.getButton() == MouseEvent.BUTTON1 && MainController.isMenu) {
 				if(x<=e.getX() && y<=e.getY() && x+115>e.getX() && y+115>e.getY()){
 					isClick=true;
-					//System.out.println("x="+x+"/y="+y);
 				}
-				
-				
 			}
 		}
 	
 		@Override
 		public void mouseEntered(MouseEvent e) {
-	
 		}
 	
 		@Override
 		public void mouseExited(MouseEvent e) {
-	
 		}
 	
 		@Override
@@ -83,7 +72,6 @@ private class GameMouseListener implements MouseListener {
 	
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			
 		}
 	}
 
@@ -130,7 +118,4 @@ private class GameMouseListener implements MouseListener {
 	public void setIsClick(boolean isClick) {
 		this.isClick = isClick;
 	}
-	
-	
-	
 }

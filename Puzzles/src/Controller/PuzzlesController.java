@@ -29,9 +29,7 @@ public class PuzzlesController {
 	
 	private boolean space;
 	
-	//private boolean isOver;
-	
-	
+	private boolean rotate;
 	
 public	PuzzlesController(String imageName){
 		drawImg=new DrawImg();
@@ -48,37 +46,30 @@ public	PuzzlesController(String imageName){
 		
 		drawImg.mix(cubes);
 		move= new MoveCube(findOneCube(0,0).getImage().getWidth(),findOneCube(0,0).getImage().getHeight());
-		//move.setIsEmpty(true);
 	}
 	
 	public void render(Graphics2D graphic){
-		if(isCorect()){
+		//if(isCorect()){
 			if(!space){
 				drawImg.drawAll(graphic,cubes);
 			}else{
 				drawImg.drawCorrect(graphic,cubes);
 			}
 			move.draw(graphic);
-		}else{
+		/*}else{
 			MainController.isMenu=true;
-		}
-	}
-	
-	public void draw(){
-		
+		}*/
 	}
 	
 	public void update(){
 		move.update();
-		
 	}
-	
 	
 	public boolean isCorect(){
 		boolean isCor=false;
 		int i=0;
 		for (Cube cube : cubes) {
-			if(cube.getCurrent_X()==cube.getCorrect_X() &&cube.getCurrent_Y()==cube.getCorrect_Y()){
+			if(cube.getCurrent_X()==cube.getCorrect_X() &&cube.getCurrent_Y()==cube.getCorrect_Y() && cube.getCurrent_orient()==cube.getCorrect_orient()){
 				i=i+1;
 			}
 		}
@@ -148,6 +139,32 @@ public	PuzzlesController(String imageName){
 	
 	}
 	
+	private void takeOrient(int mouseX, int mouseY) {
+		Cube cube = findOneCube(mouseX/115, mouseY/115);
+		
+		switch (cube.getCurrent_orient()) {
+		case 1:{
+			cube.setCurrent_orient(4);
+		}
+			break;
+		case 2:{
+			cube.setCurrent_orient(1);
+		}
+			break;
+		case 3:{
+			cube.setCurrent_orient(2);
+		}
+			break;
+		case 4:{
+			cube.setCurrent_orient(3);
+		}
+			break;
+		default:
+			break;
+		}
+	}
+	
+	
 	public List<KeyListener> getKeyListeners() {
 		List<KeyListener> listeners = new ArrayList<>();
 		listeners.add(move.getKeyListener());
@@ -198,7 +215,8 @@ public	PuzzlesController(String imageName){
 	
 		@Override
 		public void mouseClicked(MouseEvent e) {
-	
+			
+			
 		}
 	
 		@Override
@@ -215,6 +233,13 @@ public	PuzzlesController(String imageName){
 		public void mousePressed(MouseEvent e) {
 			if (e.getButton() == MouseEvent.BUTTON1) {
 				take(e.getX(), e.getY());
+			}      
+			
+			
+			if (e.getButton() == MouseEvent.BUTTON3 && !rotate) {
+				System.out.println(e.getX()+"/"+e.getY());
+				takeOrient(e.getX(), e.getY());
+				rotate=true;
 			}
 		}
 	
@@ -222,6 +247,10 @@ public	PuzzlesController(String imageName){
 		public void mouseReleased(MouseEvent e) {
 			if (e.getButton() == MouseEvent.BUTTON1) {
 				replace(e.getX(), e.getY());
+			}
+
+			if (e.getButton() == MouseEvent.BUTTON3) {
+				rotate=false;
 			}
 		}
 	}

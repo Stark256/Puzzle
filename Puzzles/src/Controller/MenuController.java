@@ -2,7 +2,6 @@ package Controller;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +12,6 @@ import Frame.Panel;
 public class MenuController {
 
 	private List<DrawSolid> drawSoled;
-	
-	
 	
 	public MenuController() {
 		this.drawSoled = new ArrayList<>();

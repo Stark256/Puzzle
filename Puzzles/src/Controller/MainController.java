@@ -16,12 +16,8 @@ public class MainController {
 	
 	public MainController(){
 		isMenu=true;
-		//controller=new PuzzlesController();
 		menuController=new MenuController();
-		
 	}
-	
-	
 	
 	public void update(){
 		if(isMenu){
@@ -45,9 +41,6 @@ public class MainController {
 	}
 	
 	public void draw(){
-		if(!isMenu){
-		controller.draw();
-		}
 	}
 	
 	public List<MouseListener> getMouseListenersMenu(){

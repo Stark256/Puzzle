@@ -65,7 +65,4 @@ public class Cube {
 	public int getCorrect_orient() {
 		return correct_orient;
 	}
-	
-	
-	
 }

@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 import Frame.Panel;
@@ -67,10 +69,38 @@ public class MoveCube {
 
 	public void draw(Graphics2D g) {
 		g.setColor(new Color(80,80,80));
-		if(image!=null)
-			g.fillRect(x*width, y*height, width, height);
-		g.drawImage(image, moveX, moveY, null);
-	
+		if(image!=null){
+			
+		
+		double rotationRequired=0.0;
+		switch (rotate) {
+			case 1:{
+				rotationRequired = Math.toRadians(0);
+			}
+			break;
+			case 2:{
+				rotationRequired = Math.toRadians(-90);
+			}
+			break;
+			case 3:{
+				rotationRequired = Math.toRadians(-180);
+			}
+			break;
+			case 4:{
+				rotationRequired = Math.toRadians(-270);
+			}
+			break;
+			default:
+				break;
+			}
+		
+		
+		AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, image.getWidth()/2,image.getHeight()/2);
+		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+		
+		g.fillRect(x*width, y*height, width, height);
+		g.drawImage(op.filter(image,null), moveX, moveY, null);
+		}
 	}
 
 	public void update() {

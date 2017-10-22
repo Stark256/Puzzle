@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import Controller.MainController;
-import Controller.PuzzlesController;
 import Draw.Background;
 
 public class Panel extends JPanel implements Runnable{
@@ -41,32 +40,22 @@ public class Panel extends JPanel implements Runnable{
 		setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		setFocusable(true);
 		requestFocus();
-		
 	}
 
-	
-	
 	public void update(){
-		background.update();
 		mainController.update();
-		
 	}
 	
-	//Update graphic components
 	public void render(){
 		background.draw(graphic);
 		mainController.render(graphic);
-	
 	}
 	
 	public void draw(){
 		Graphics graphic2=this.getGraphics();
 		graphic2.drawImage(image, 0, 0, null);
 		graphic2.dispose();
-		//mainController.draw();
-		
 	}
-	
 	
 	public void start(){
 		thread = new Thread(this);
@@ -92,8 +81,6 @@ public class Panel extends JPanel implements Runnable{
 		for (MouseListener mouseListener : mainController.getMouseListenersMenu()) {
 			addMouseListener(mouseListener);
 		}
-		//addKeyListener(controller.getListener());
-		//addKeyListener(controller.getControllerListener());
 		
 		while(true){
 			if(!MainController.isMenu){
@@ -131,9 +118,5 @@ public class Panel extends JPanel implements Runnable{
 			timerFPS=0;
 			sleepTime=1;
 		}
-		
 	}
-	
-	
-	
 }
