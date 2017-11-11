@@ -39,13 +39,13 @@ public class MoveCube {
 
 	private int rotate;
 
-	private boolean up;
+//	private boolean up;
 
-	private boolean down;
+	//private boolean down;
 
-	private boolean left;
+	//private boolean left;
 
-	private boolean right;
+	//private boolean right;
 
 	public MoveCube(Cube cube, int moveX, int moveY) {
 		this.image=cube.getImage();
@@ -104,33 +104,33 @@ public class MoveCube {
 	}
 
 	public void update() {
-		move();
+	//	move();
 	}
 	
-	public void set(Cube puzzle){
-		image = puzzle.getImage();
+	public void set(Cube cube){
+		image = cube.getImage();
 		width = image.getWidth();
 		height = image.getHeight();
-		x = puzzle.getCurrent_X();
-		y = puzzle.getCurrent_Y();
+		x = cube.getCurrent_X();
+		y = cube.getCurrent_Y();
 		moveX = x*width;
 		moveY = y*height;
-		rotate = puzzle.getCurrent_orient();
+		rotate = cube.getCurrent_orient();
 	}
 	
 	public void clear(){
 		image = null;
 	}
 
-	public KeyListener getKeyListener() {
+/*	public KeyListener getKeyListener() {
 		return new GameKeyListener();
-	}
+	}*/
 	
 	public MouseMotionListener getGameMouseMotionListener() {
 		return new GameMouseMotionListener();
 	}
 	
-	private void move() {
+	/*private void move() {
 		int speed = 5;
 		if (up) {
 			if (moveY > 0)
@@ -156,7 +156,7 @@ public class MoveCube {
 			if (moveX > Panel.WIDTH-width)
 				moveX=Panel.WIDTH-width;
 		}
-	}
+	}*/
 
 	public int getMoveX() {
 		return moveX;
@@ -255,7 +255,7 @@ public class MoveCube {
 		this.width = width;
 	}
 
-	private class GameKeyListener implements KeyListener {
+	/*private class GameKeyListener implements KeyListener {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
@@ -296,7 +296,7 @@ public class MoveCube {
 
 		}
 
-	}
+	}*/
 	
 	private class GameMouseMotionListener implements MouseMotionListener {
 

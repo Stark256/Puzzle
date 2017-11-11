@@ -40,12 +40,10 @@ public class MainController {
 		}
 	}
 	
-	public void draw(){
-	}
-	
 	public List<MouseListener> getMouseListenersMenu(){
 		return menuController.getMouseListenersMenu();
 	}
+	
 	
 	public List<KeyListener> getKeyListeners(){
 		

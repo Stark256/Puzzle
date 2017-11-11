@@ -32,14 +32,13 @@ public class PuzzlesController {
 	private boolean rotate;
 	
 public	PuzzlesController(String imageName){
-		drawImg=new DrawImg();
 		
 		try {
 			gameImg=ImageIO.read(new File(imageName));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+		drawImg=new DrawImg(gameImg);
 		CutCube cutCube=new CutCube(gameImg);
 		cutCube.cut();
 		cubes=cutCube.getCubes();
@@ -50,11 +49,15 @@ public	PuzzlesController(String imageName){
 	
 	public void render(Graphics2D graphic){
 		//if(isCorect()){
-			if(!space){
+			//if(!space){
 				drawImg.drawAll(graphic,cubes);
-			}else{
-				drawImg.drawCorrect(graphic,cubes);
-			}
+			//}else{
+				if(space){
+					drawImg.verifyWithSolid(cubes);
+				//drawImg.correct(cubes);
+				space=false;
+				}
+			//}
 			move.draw(graphic);
 		/*}else{
 			MainController.isMenu=true;
@@ -114,14 +117,14 @@ public	PuzzlesController(String imageName){
 				move.setCurrentY(5);
 			
 			if (move.getImage() != null) {
-				Cube puz1 = findOneCube(move.getX(), move.getY());
-				Cube puz2 = findOneCube(move.getCurrentX(), move.getCurrentY());
+				Cube cub1 = findOneCube(move.getX(), move.getY());
+				Cube cub2 = findOneCube(move.getCurrentX(), move.getCurrentY());
 	
-				puz1.setCurrent_X(move.getCurrentX());
-				puz1.setCurrent_Y(move.getCurrentY());
+				cub1.setCurrent_X(move.getCurrentX());
+				cub1.setCurrent_Y(move.getCurrentY());
 	
-				puz2.setCurrent_X(move.getX());
-				puz2.setCurrent_Y(move.getY());
+				cub2.setCurrent_X(move.getX());
+				cub2.setCurrent_Y(move.getY());
 	
 				move.clear();
 			}
@@ -167,7 +170,7 @@ public	PuzzlesController(String imageName){
 	
 	public List<KeyListener> getKeyListeners() {
 		List<KeyListener> listeners = new ArrayList<>();
-		listeners.add(move.getKeyListener());
+		//listeners.add(move.getKeyListener());
 		listeners.add(new GameKeyListener());
 		return listeners;
 	}
@@ -191,6 +194,7 @@ public	PuzzlesController(String imageName){
 			int key = e.getKeyCode();
 			if (key == KeyEvent.VK_SPACE) {
 				space=true;
+				//drawImg.correct(cubes);
 			}
 			if (key == KeyEvent.VK_ESCAPE) {
 				MainController.isMenu=true;
@@ -201,7 +205,7 @@ public	PuzzlesController(String imageName){
 		public void keyReleased(KeyEvent e) {
 			int key = e.getKeyCode();
 			if (key == KeyEvent.VK_SPACE) {
-				space=false;
+				//space=false;
 			}
 		}
 	
@@ -237,7 +241,7 @@ public	PuzzlesController(String imageName){
 			
 			
 			if (e.getButton() == MouseEvent.BUTTON3 && !rotate) {
-				System.out.println(e.getX()+"/"+e.getY());
+				//System.out.println(e.getX()+"/"+e.getY());
 				takeOrient(e.getX(), e.getY());
 				rotate=true;
 			}

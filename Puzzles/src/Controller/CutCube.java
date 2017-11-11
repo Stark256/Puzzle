@@ -54,13 +54,14 @@ public List<Cube> cubes = new ArrayList<>();
 				
 			}		  
 		}
+		String name="src/croppedImg/image_"+xx+"_"+yy+".jpg";
 			try {
-				ImageIO.write(current_image, "jpg", new File("src/croppedImg/image_"+xx+"_"+yy+".jpg"));
+				ImageIO.write(current_image, "jpg", new File(name));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			Cube cube= new Cube(current_image,xx,yy,1);
-			
+			cube.setName(name);
 			cubes.add(cube);
 	}	
 	

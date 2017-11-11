@@ -45,7 +45,7 @@ public class MenuController {
 		if(MainController.isMenu){
 			for (DrawSolid drawSolid : drawSoled) {
 				if(drawSolid.getIsClick()){
-					System.out.println("+");
+					//System.out.println("+");
 					return drawSolid.getImageName();
 				}
 			}

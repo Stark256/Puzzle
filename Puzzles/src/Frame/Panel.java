@@ -65,7 +65,7 @@ public class Panel extends JPanel implements Runnable{
 	@Override
 	public void run() {
 		
-		FPS=30;
+		FPS=60;
 		milisToFPS=1000/FPS;
 		sleepTime=0;
 		
