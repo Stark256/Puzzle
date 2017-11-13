@@ -18,7 +18,7 @@ public class MenuController {
 		drawSoled.add(new DrawSolid("src/img/img1.jpg",0,115));
 		drawSoled.add(new DrawSolid("src/img/img2.jpg",115,115));
 		drawSoled.add(new DrawSolid("src/img/img3.jpg",230,115));
-		drawSoled.add(new DrawSolid("src/img/img4.jpg",345,115));
+		drawSoled.add(new DrawSolid("src/img/iimg4.jpg",345,115));
 		drawSoled.add(new DrawSolid("src/img/img5.jpg",0,230));
 		drawSoled.add(new DrawSolid("src/img/img6.jpg",115,230));
 		drawSoled.add(new DrawSolid("src/img/img7.jpg",230,230));

@@ -66,7 +66,11 @@ public List<Cube> cubes = new ArrayList<>();
 	}	
 	
 	public List<Cube> getCubes() {
-		return cubes;
+		List<Cube> cube1 = new ArrayList<>();
+		for(int i = cubes.size()-1; i >=0; i--){
+			cube1.add(cubes.get(i));
+		}
+		return cube1;
 	}
 
 	public void setCubes(List<Cube> cubes) {
