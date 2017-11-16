@@ -98,7 +98,13 @@ public class DrawImg {
 		}
 	}	
 	
-	
+	public void drawWin(Graphics2D graphic){
+		try {
+			graphic.drawImage(ImageIO.read(new File("src/img/complete.jpg")), 0, 0, 460, 460, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

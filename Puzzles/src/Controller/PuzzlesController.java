@@ -33,6 +33,8 @@ public class PuzzlesController {
 	
 	private boolean rotate;
 	
+	private boolean enter;
+	
 	//private Algorithm alg;
 	
 	private Algo algo;
@@ -55,23 +57,21 @@ public	PuzzlesController(String imageName){
 	}
 	
 	public void render(Graphics2D graphic){
-		//if(isCorect()){
-			//if(!space){
-				drawImg.drawAll(graphic,cubes);
-			//}else{
-				if(space){
-					
-					algo.maleUpCorrect(cubes);
-					//alg.getThrough(cubes);
-					//drawImg.verifyWithSolid(cubes);
-				//drawImg.correct(cubes);
-				space=false;
-				}
+		if(!isCorect() &&!enter){
+			//while(!space){
+			drawImg.drawWin(graphic);
 			//}
-			move.draw(graphic);
-		/*}else{
-			MainController.isMenu=true;
-		}*/
+		}else{
+		drawImg.drawAll(graphic,cubes);
+			
+		if(space){
+			algo.maleUpCorrect(cubes);
+			//alg.getThrough(cubes);
+			space=false;
+		}
+			//}
+		move.draw(graphic);
+		}
 	}
 	
 	public void update(){
@@ -82,7 +82,8 @@ public	PuzzlesController(String imageName){
 		boolean isCor=false;
 		int i=0;
 		for (Cube cube : cubes) {
-			if(cube.getCurrent_X()==cube.getCorrect_X() &&cube.getCurrent_Y()==cube.getCorrect_Y() && cube.getCurrent_orient()==cube.getCorrect_orient()){
+			if(cube.getCurrent_X()==cube.getCorrect_X() &&cube.getCurrent_Y()==cube.getCorrect_Y() &&
+					cube.getCurrent_orient()==cube.getCorrect_orient()){
 				i=i+1;
 			}
 		}
@@ -205,6 +206,9 @@ public	PuzzlesController(String imageName){
 			if (key == KeyEvent.VK_SPACE) {
 				space=true;
 				//drawImg.correct(cubes);
+			}
+			if(key==KeyEvent.VK_ENTER){
+				enter=true;
 			}
 			if (key == KeyEvent.VK_ESCAPE) {
 				MainController.isMenu=true;
