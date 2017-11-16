@@ -2,107 +2,8 @@ package Algorithm1;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 
-import Controller.Cube;
-
-public class PixelTest {
-
-	
-	public void compareOnePixel(List<Cube> cubes){
-		List<Cube> cubic=new ArrayList<>(cubes);
-		int index;
-		while(cubic.isEmpty()){
-			index=0;
-			for(int i=cubic.size();i>0;i--){
-				if(cubic.get(i)!=null){
-					
-					
-					
-					
-				}
-			}
-			cubic.remove(index);
-		}
-		
-		
-	}
-	
-	public Cube findFirst(List<Cube> cubes) {
-		boolean find = true;
-		Cube cube=null;
-		List<Cube> cc=new ArrayList<>();
-		//int index = -1;
-		//if(find){
-		for (int i = 0; i < cubes.size(); i++) {
-			if (compareWithAll(cubes, cubes.get(i))) {
-				cc.add(cubes.get(i));
-				//index++;
-				break;
-			}
-		//}
-		//find= false;
-		}
-		//Cube cube = null;
-		/*if(index!=-1){
-			cube = cc.get(index);}
-		//cc.remove(index);
-		if(index>0)
-			index--;*/
-		for(int i=0;i<cc.size();i++){
-		
-			System.out.println(cc.get(i).getCorrect_X()+"/"+cc.get(i).getCorrect_Y());
-		
-		}
-		return cube;
-	}
-
-	private void verify(){
-		
-	}
-	
-	private boolean compareWithAll(List<Cube> cubes, Cube cube) {
-		boolean a = false;
-		List<Cube> cubc=new ArrayList<>();
-		cube.setCurrent_orient(1);
-		for (int i = 0; i < cubes.size(); i++) {
-			int []b = compareImagess(cube.getImage(), cubes.get(i).getImage());
-			if (b[0] == 1 && b[1] == 4)
-				a = true;
-		}
-		//System.out.println(a + "(" + cube.getCurrent_X() + "|" + cube.getCurrent_Y() + ")");
-
-		return a;
-	}
-	
-	private void change(Cube cube, Cube cube1) {
-		int xx = cube.getCurrent_X();
-		int yy = cube.getCurrent_Y();
-
-		cube.setCurrent_X(cube1.getCurrent_X());
-		cube.setCurrent_Y(cube1.getCurrent_Y());
-
-		cube1.setCurrent_X(xx);
-		cube1.setCurrent_Y(yy);
-	}
-	
-	private int[] compareImagess(BufferedImage image, BufferedImage image1){
-		int[] arr=new int[2];
-		if (topSide(image, image1)){
-			arr[0]= 1;
-		}else{
-			arr[0]= 0;
-		}
-		if (leftSide(image, image1)){
-			arr[1]= 4;
-		}else{
-			arr[1]= 0;
-		}
-		return arr;
-	}
-	
-	
+public class TestColor {
 	public int compareImages(BufferedImage image, BufferedImage image1) {
 		if (topSide(image, image1))
 			return 1;
@@ -127,15 +28,15 @@ public class PixelTest {
 	private boolean compareOneColor(Color color1, Color color2) {
 		boolean rig = true;
 
-		if (color1.getRed() == color2.getRed())  {
+		if (color1.getRed() != color2.getRed())  {
 			rig = false;
 		}
-		if (color1.getGreen() == color2.getGreen()) {
+		/*if (color1.getGreen() != color2.getGreen()) {
 			rig = false;
 		}
-		if (color1.getBlue() == color2.getBlue()) {
+		if (color1.getBlue() != color2.getBlue()) {
 			rig = false;
-		}
+		}*/
 		return rig;
 	}
 	
@@ -206,6 +107,7 @@ public class PixelTest {
 		int r = (rgb & 0x00ff0000) >> 16;
 		int g = (rgb & 0x0000ff00) >> 8;
 		int b = rgb & 0x000000ff;
+	//	System.out.println("r="+r+"/g="+g+"/b="+b);
 		return new Color(r, g, b);
 	}
 }

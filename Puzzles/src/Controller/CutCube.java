@@ -180,18 +180,47 @@ public List<Cube> cubes = new ArrayList<>();
 			for(int y=0;y<image.getHeight()/4;y++){
 				current_image.setRGB(x,y,image.getRGB(x+offset_x,y+offset_y));
 				Color color = new Color(image.getRGB(x+offset_x,y+offset_y));
-				if(x==56 && y==0){//верх
+				/*if(x==56 && y==0){//верх
 					current_image.setRGB(x,y,new Color(cs[xx*2+1][yy*2],color.getGreen(),color.getBlue()).getRGB());
+				//	System.out.println("top"+xx+"/"+yy+"->"+(xx*2+1)+"/"+(yy*2));
 				}
 				if(x==0 && y==56){//ліво
 					current_image.setRGB(x,y, new Color(cs[xx*2][yy*2+1],color.getGreen(),color.getBlue()).getRGB());
+				//	System.out.println("left"+xx+"/"+yy+"->"+((xx*2))+"/"+(yy*2+1));
 				}
 				if(x==56 && y==114){//низ
 					current_image.setRGB(x,y,new Color(cs[xx*2+1][(yy+1)*2],color.getGreen(),color.getBlue()).getRGB());
+					//System.out.println("bottom"+xx+"/"+yy+"->"+(xx*2+1)+"/"+((yy+1)*2));
 				}
 				if(x==114 && y==56){//право
 					current_image.setRGB(x,y,new Color(cs[(xx+1)*2][yy*2+1],color.getGreen(),color.getBlue()).getRGB());
+					//System.out.println("right"+xx+"/"+yy+"->"+((xx+1)*2)+"/"+(yy*2+1));
+				}*/
+				
+				if(y==0){//верх
+					current_image.setRGB(x,y,new Color(cs[xx*2+1][yy*2],cs[xx*2+1][yy*2],cs[xx*2+1][yy*2]).getRGB());
+				//	System.out.println("top"+xx+"/"+yy+"->"+(xx*2+1)+"/"+(yy*2));
 				}
+				if(x==0){//ліво
+					current_image.setRGB(x,y, new Color(cs[xx*2][yy*2+1],cs[xx*2][yy*2+1],cs[xx*2][yy*2+1]).getRGB());
+				//	System.out.println("left"+xx+"/"+yy+"->"+((xx*2))+"/"+(yy*2+1));
+				}
+				if( y==114){//низ
+					current_image.setRGB(x,y,new Color(cs[xx*2+1][(yy+1)*2],cs[xx*2+1][(yy+1)*2],cs[xx*2+1][(yy+1)*2]).getRGB());
+					//System.out.println("bottom"+xx+"/"+yy+"->"+(xx*2+1)+"/"+((yy+1)*2));
+				}
+				if(x==114){//право
+					current_image.setRGB(x,y,new Color(cs[(xx+1)*2][yy*2+1],cs[(xx+1)*2][yy*2+1],cs[(xx+1)*2][yy*2+1]).getRGB());
+					//System.out.println("right"+xx+"/"+yy+"->"+((xx+1)*2)+"/"+(yy*2+1));
+				}
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				
 			}		  
