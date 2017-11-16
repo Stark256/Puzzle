@@ -10,6 +10,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import Algorithm.ColorTest;
+import Algorithm1.TC;
 
 public class CutCube {
 
@@ -50,11 +51,12 @@ public List<Cube> cubes = new ArrayList<>();
 			offset_y+=image.getHeight()/4;
 			
 		}
-		//findT();
+		//////algorithm1
+		findT();
 	}
 	
 	
-	private void changePix(ColorTest test,List<Cube> leftcubs,List<Cube> bottomcubs,int i){
+	private void changePix(TC test,List<Cube> leftcubs,List<Cube> bottomcubs,int i){
 		System.out.println("----/"+(i+1)+"/----");
 		System.out.println(cubes.get(i).getCorrect_X()+"/"+cubes.get(i).getCorrect_Y());
 		System.out.println("ліво");
@@ -82,11 +84,11 @@ public List<Cube> cubes = new ArrayList<>();
 	}
 	
 	private void findTT(){
-		ColorTest test=new ColorTest();
+		TC test=new TC();
 		List<Cube> leftcubs;
 		List<Cube> bottomcubs;
-		test.setPixelKoef(0.8);
-		test.setColorDef(20);
+		//test.setPixelKoef(0.8);
+		//test.setColorDef(20);
 			for(int i=0;i<cubes.size();i++){
 				leftcubs = new ArrayList<>();
 				bottomcubs = new ArrayList<>();
@@ -117,10 +119,11 @@ public List<Cube> cubes = new ArrayList<>();
 	
 	
 	private void findT(){
-		ColorTest test=new ColorTest();
+		TC test=new TC();
 		List<Cube> leftcubs;
 		List<Cube> bottomcubs;
-		
+		test.setColorDef(7);
+		test.setPixelKoef(0.23);
 			for(int i=0;i<cubes.size();i++){
 				leftcubs = new ArrayList<>();
 				bottomcubs = new ArrayList<>();
@@ -180,6 +183,9 @@ public List<Cube> cubes = new ArrayList<>();
 			for(int y=0;y<image.getHeight()/4;y++){
 				current_image.setRGB(x,y,image.getRGB(x+offset_x,y+offset_y));
 				Color color = new Color(image.getRGB(x+offset_x,y+offset_y));
+				
+			//////algorithm3
+				
 				/*if(x==56 && y==0){//верх
 					current_image.setRGB(x,y,new Color(cs[xx*2+1][yy*2],color.getGreen(),color.getBlue()).getRGB());
 				//	System.out.println("top"+xx+"/"+yy+"->"+(xx*2+1)+"/"+(yy*2));
@@ -197,7 +203,10 @@ public List<Cube> cubes = new ArrayList<>();
 					//System.out.println("right"+xx+"/"+yy+"->"+((xx+1)*2)+"/"+(yy*2+1));
 				}*/
 				
-				if(y==0){//верх
+				
+				////////////////algorithm2
+				
+				/*if(y==0){//верх
 					current_image.setRGB(x,y,new Color(cs[xx*2+1][yy*2],cs[xx*2+1][yy*2],cs[xx*2+1][yy*2]).getRGB());
 				//	System.out.println("top"+xx+"/"+yy+"->"+(xx*2+1)+"/"+(yy*2));
 				}
@@ -212,14 +221,7 @@ public List<Cube> cubes = new ArrayList<>();
 				if(x==114){//право
 					current_image.setRGB(x,y,new Color(cs[(xx+1)*2][yy*2+1],cs[(xx+1)*2][yy*2+1],cs[(xx+1)*2][yy*2+1]).getRGB());
 					//System.out.println("right"+xx+"/"+yy+"->"+((xx+1)*2)+"/"+(yy*2+1));
-				}
-				
-				
-				
-				
-				
-				
-				
+				}*/
 				
 				
 				

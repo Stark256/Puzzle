@@ -15,18 +15,21 @@ public class MenuController {
 	
 	public MenuController() {
 		this.drawSoled = new ArrayList<>();
-		drawSoled.add(new DrawSolid("src/img/img1.jpg",0,115));
-		drawSoled.add(new DrawSolid("src/img/img2.jpg",115,115));
-		drawSoled.add(new DrawSolid("src/img/img3.jpg",230,115));
-		drawSoled.add(new DrawSolid("src/img/iimg4.jpg",345,115));
-		drawSoled.add(new DrawSolid("src/img/img5.jpg",0,230));
-		drawSoled.add(new DrawSolid("src/img/img6.jpg",115,230));
-		drawSoled.add(new DrawSolid("src/img/img7.jpg",230,230));
-		drawSoled.add(new DrawSolid("src/img/img8.jpg",345,230));
-		drawSoled.add(new DrawSolid("src/img/img9.jpg",0,345));
-		drawSoled.add(new DrawSolid("src/img/img10.jpg",115,345));
-		drawSoled.add(new DrawSolid("src/img/img11.jpg",230,345));
-		drawSoled.add(new DrawSolid("src/img/img12.jpg",345,345));
+		
+		drawSoled.add(new DrawSolid("src/img/img13.jpg",0,115));
+		drawSoled.add(new DrawSolid("src/img/img5.jpg",115,115));
+		drawSoled.add(new DrawSolid("src/img/img8.jpg",230,115));
+		drawSoled.add(new DrawSolid("src/img/img9.jpg",345,115));
+		
+		drawSoled.add(new DrawSolid("src/img/img2.jpg",0,230));
+		drawSoled.add(new DrawSolid("src/img/img3.jpg",115,230));
+		drawSoled.add(new DrawSolid("src/img/img6.jpg",230,230));
+		drawSoled.add(new DrawSolid("src/img/img7.jpg",345,230));
+		
+		drawSoled.add(new DrawSolid("src/img/img10.jpg",0,345));
+		drawSoled.add(new DrawSolid("src/img/img11.jpg",115,345));
+		drawSoled.add(new DrawSolid("src/img/img12.jpg",230,345));
+		drawSoled.add(new DrawSolid("src/img/img14.jpg",345,345));
 	}
 
 	public void render(Graphics2D graphic){

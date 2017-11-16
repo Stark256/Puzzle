@@ -16,6 +16,8 @@ import javax.imageio.ImageIO;
 
 import Algorithm.Algorithm;
 import Algorithm1.Algo;
+import Algorithm2.Algo2;
+import Algorithm3.Algo3;
 import Draw.DrawImg;
 import Frame.Panel;
 
@@ -39,9 +41,15 @@ public class PuzzlesController {
 	
 	private Algo algo;
 	
+	private Algo2 algo2;
+	
+	private Algo3 algo3;
+	
 public	PuzzlesController(String imageName){
 		//alg = new Algorithm();	
 		algo=new Algo();
+		algo2=new Algo2();
+		algo3=new Algo3();
 		try {
 			gameImg=ImageIO.read(new File(imageName));
 		} catch (IOException e1) {
@@ -65,11 +73,18 @@ public	PuzzlesController(String imageName){
 		drawImg.drawAll(graphic,cubes);
 			
 		if(space){
+			//algo1
 			algo.maleUpCorrect(cubes);
+			//algo2
+			//algo2.maleUpCorrect(cubes);
+			//algo3
+			//algo3.maleUpCorrect(cubes);
+			
+			
 			//alg.getThrough(cubes);
 			space=false;
 		}
-			//}
+			
 		move.draw(graphic);
 		}
 	}

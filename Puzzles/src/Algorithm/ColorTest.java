@@ -26,13 +26,6 @@ public class ColorTest {
 		return 0;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 	/////////////////////////////////
 	public boolean compareColors(Color[] colors1, Color[] colors2) {
 		int size = 0;
