@@ -41,12 +41,13 @@ public class FindFirst {
 
 	private boolean compareWithAll(List<Cube> cubes, Cube cube) {
 		boolean a = true;
+		cube.setCurrent_orient(1);
 		for (int i = 0; i < cubes.size(); i++) {
 			int b = colorTest.compareImages(cube.getImage(), cubes.get(i).getImage());
 			if (b == 1 || b == 4)
 				a = false;
 		}
-		System.out.println(a + "(" + cube.getCurrent_X() + "|" + cube.getCurrent_Y() + ")");
+		//System.out.println(a + "(" + cube.getCurrent_X() + "|" + cube.getCurrent_Y() + ")");
 
 		return a;
 	}

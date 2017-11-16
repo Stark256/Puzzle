@@ -1,6 +1,8 @@
 package Algorithm;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 
 import Controller.Cube;
@@ -14,10 +16,13 @@ public class Algorithm {
 	private ColorTest colorTest;
 
 	private FindFirst findFirst;
+	
+	private MakeUp makeUp;
 
 	public Algorithm() {
 		colorTest = new ColorTest();
 		findFirst = new FindFirst(colorTest);
+		
 	}
 
 	public void getThrough(List<Cube> cubes) {
@@ -25,9 +30,35 @@ public class Algorithm {
 		// 1, 1).getImage(),findOneByCurrentXY(cubes, 2, 2).getImage()));
 		// System.out.println("-------------------------------------");
 		// findAndReplaceFirst(cubes);
+		
+		
+	/*	for (int i = cubes.size()-1; i>=0;i--) {
+			cubes.get(i).setCurrent_X((15-i)/4);
+			cubes.get(i).setCurrent_Y((15-i)%4);
+			cubes.get(i).setCurrent_orient(1);
+		}*/
+		
+		
+		/*makeUp = new MakeUp(colorTest,cubes);
 		Cube cube = findFirst.findFirst(cubes);
 		if (cube != null)
-			change(cubes, cube, 0, 0);
+			change(cubes, cube, 0, 0);*/
+		System.out.println("--------------------------------------------");
+		for(int yy=0;yy<4;yy++){
+			for(int xx=0;xx<4;xx++){
+			int x=1;
+				for(int y=0;y<4;y++){
+					for(;x<4;x++){
+						
+						System.out.print(colorTest.compareImages(findOneByCurrentXY(cubes,xx,yy).getImage(), findOneByCurrentXY(cubes,x,y).getImage()));
+					}
+					x=0;
+				}System.out.println();
+				System.out.println("------");
+			}
+		}
+		//System.out.println(colorTest.compareImages(findOneByCurrentXY(cubes,0,0).getImage(), findOneByCurrentXY(cubes,1,1).getImage()));
+	//	makeUp.findAll();
 		// System.out.println(testFirst(cubes, findOneByCurrentXY(cubes, 2, 1),
 		// 1, 1));
 	}
@@ -155,8 +186,7 @@ public class Algorithm {
 
 		cube.setCurrent_X(cube1.getCurrent_X());
 		cube.setCurrent_Y(cube1.getCurrent_Y());
-		cube.setCurrent_orient(1);
-		
+
 		cube1.setCurrent_X(xx);
 		cube1.setCurrent_Y(yy);
 	}

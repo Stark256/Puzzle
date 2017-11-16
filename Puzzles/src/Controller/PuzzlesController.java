@@ -15,6 +15,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import Algorithm.Algorithm;
+import Algorithm1.PixelTest;
 import Draw.DrawImg;
 import Frame.Panel;
 
@@ -32,11 +33,13 @@ public class PuzzlesController {
 	
 	private boolean rotate;
 	
-	private Algorithm alg;
+	//private Algorithm alg;
+	
+	private PixelTest pixTest;
 	
 public	PuzzlesController(String imageName){
-		alg = new Algorithm();	
-	
+		//alg = new Algorithm();	
+		pixTest=new PixelTest();
 		try {
 			gameImg=ImageIO.read(new File(imageName));
 		} catch (IOException e1) {
@@ -58,8 +61,8 @@ public	PuzzlesController(String imageName){
 			//}else{
 				if(space){
 					
-					
-					alg.getThrough(cubes);
+					pixTest.findFirst(cubes);
+					//alg.getThrough(cubes);
 					//drawImg.verifyWithSolid(cubes);
 				//drawImg.correct(cubes);
 				space=false;
